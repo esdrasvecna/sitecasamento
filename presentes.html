@@ -3,40 +3,27 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Lista de Presentes</title>
+  <title>Lista de Presentes • Ingrid & Esdras</title>
   <link rel="stylesheet" href="./css/styles.css"/>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <a class="brand" href="./presentes.html">
-        <small>Site Oficial</small>
-        <b>Ingrid & Esdras</b>
-      </a>
-      <nav class="menu">
-        <a href="./presentes.html">Lista de presentes</a>
-        <a href="#" onclick="alert('Próximo passo: vamos criar o RSVP :)')">Confirmar presença</a>
-      </nav>
-    </div>
-  </header>
 
-  <section class="cover">
-    <div class="container">
-      <div class="couple">
-        <div class="names">Ingrid & Esdras</div>
-        <div class="meta">
-          <span class="pill">18 • 12 • 2026</span>
-          <span class="pill">Quirinópolis - GO</span>
-        </div>
+  <div id="site-header"></div>
+
+  <main class="main">
+
+    <section class="container" style="padding:22px 0 10px">
+      <div class="page-hero">
+        <span class="kicker">🎁 Lista de presentes</span>
+        <h1 class="page-title">Escolha um presente com carinho</h1>
+        <p class="page-sub">
+          Sua presença é o nosso maior presente.
+          Caso deseje nos presentear, escolhemos alguns itens com muito amor 💛
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <main class="section">
-    <div class="container">
-      <h1 class="section-title">Lista de presentes</h1>
-      <p class="p">Escolha um presente com carinho. Você pode clicar em <b>Presentear</b> (link externo) e, se estiver configurado, também pode copiar o Pix.</p>
-
+    <section class="container section" style="padding-top:6px">
       <div class="toolbar">
         <input id="q" class="input" placeholder="Buscar presente..." />
         <select id="cat">
@@ -50,14 +37,19 @@
         </select>
       </div>
 
-      <div id="status" class="p" style="margin:10px 0 14px"></div>
+      <div id="status" class="p" style="margin-top:10px"></div>
       <div id="products" class="products"></div>
-    </div>
+    </section>
+
   </main>
 
-  <footer class="footer">
-    <div class="container">Dica: as cores do site ficam em <b>css/theme.css</b>.</div>
-  </footer>
+  <div id="site-footer"></div>
+
+  <script type="module">
+    import { mountHeader, mountFooter } from "./js/ui.js";
+    mountHeader("presentes");
+    mountFooter();
+  </script>
 
   <script type="module" src="./js/store.js"></script>
 </body>
