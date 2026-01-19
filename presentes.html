@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Lista de Presentes</title>
+  <link rel="stylesheet" href="./css/styles.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="./index.html">
+        <div class="brand-badge"></div>
+        <div class="brand-title">Nome & Nome</div>
+      </a>
+      <nav class="menu">
+        <a href="./index.html">Início</a>
+        <a href="./presentes.html">Presentes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h1 class="section-title">Lista de presentes</h1>
+      <p class="p">Escolha um item e clique em <b>Presentear</b> (link externo) ou copie o Pix, se estiver configurado.</p>
+
+      <div class="toolbar">
+        <input id="q" class="input" placeholder="Buscar presente..." />
+        <select id="cat">
+          <option value="">Todas categorias</option>
+        </select>
+        <select id="sort">
+          <option value="new">Mais recentes</option>
+          <option value="price_asc">Menor preço</option>
+          <option value="price_desc">Maior preço</option>
+          <option value="title">A–Z</option>
+        </select>
+      </div>
+
+      <div id="status" class="p" style="margin:10px 0 14px"></div>
+      <div id="products" class="products"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">Dica: as cores do site ficam em <b>css/theme.css</b>.</div>
+  </footer>
+
+  <script type="module" src="./js/store.js"></script>
+</body>
+</html>
