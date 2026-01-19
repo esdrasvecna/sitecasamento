@@ -14,38 +14,118 @@
         <b>Ingrid & Esdras</b>
       </a>
       <nav class="menu">
-        <a href="./presentes.html">Lista de presentes</a>
-        <a href="#" onclick="alert('Próximo passo: vamos criar o RSVP :)')">Confirmar presença</a>
+        <a class="active" href="./index.html">Início</a>
+        <a href="./presentes.html">Presentes</a>
+        <a href="#" onclick="alert('Confirmação de presença em breve 💛')">
+          Confirmar presença
+        </a>
       </nav>
     </div>
   </header>
 
-  <section class="cover">
-    <div class="container">
-      <div class="couple">
-        <div class="names">Ingrid & Esdras</div>
-        <div class="meta">
-          <span class="pill">18 • 12 • 2026</span>
-          <span class="pill">Quirinópolis - GO</span>
+  <main>
+
+    <!-- CAPA -->
+    <section class="container" style="padding:22px 0 10px">
+      <div class="hero-cover">
+        <img src="./assets/cover.jpg" alt="Foto do casal"/>
+        <div class="hero-content">
+          <span class="kicker">✨ 24 de agosto de 2026 • São Paulo / SP</span>
+
+          <h1 class="hero-title">
+            Que alegria ter você aqui 💛
+          </h1>
+
+          <p class="hero-sub">
+            Criamos este site com muito carinho para compartilhar todos os detalhes
+            do nosso grande dia. Aqui você vai encontrar informações importantes,
+            nossa lista de presentes e, em breve, a confirmação de presença.
+            Obrigado por fazer parte da nossa história.
+          </p>
+
+          <div class="actions" style="margin-top:16px">
+            <a class="btn btn-primary" href="./presentes.html">
+              Ver lista de presentes
+            </a>
+            <a class="btn btn-ghost" href="#" onclick="alert('Confirmação de presença em breve 💛')">
+              Confirmar presença
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <main class="section">
-    <div class="container">
-      <h1 class="section-title">Bem-vindos!</h1>
-      <p class="p" style="max-width:820px">Criamos este site para compartilhar informações e facilitar a vida dos convidados. Aqui você encontra a <b>lista de presentes</b> e, em seguida, vamos adicionar a <b>confirmação de presença (RSVP)</b>.</p>
+    <!-- TEXTO + INFO -->
+    <section class="container section" style="padding-top:14px">
+      <div class="split">
 
-      <div class="actions" style="margin-top:18px">
-        <a class="btn btn-primary" href="./presentes.html">Ver lista de presentes</a>
-        <a class="btn btn-ghost" href="#" onclick="alert('Próximo passo: vamos criar o RSVP :)')">Confirmar presença</a>
+        <div class="section-soft note">
+          <h3>Um recadinho nosso</h3>
+          <p>
+            Estamos vivendo um momento muito especial e contamos os dias para
+            celebrar esse amor ao lado das pessoas que fazem parte da nossa vida.
+            Se você está aqui, saiba que é muito importante pra nós. 💛
+          </p>
+          <p style="margin-top:10px">
+            Todas as informações sobre o casamento estarão sempre atualizadas por aqui.
+          </p>
+        </div>
+
+        <div class="section-soft note">
+          <h3>Informações do grande dia</h3>
+          <p><b>Data:</b> 24 de agosto de 2026</p>
+          <p><b>Cidade:</b> São Paulo / SP</p>
+          <p><b>Cerimônia:</b> 16h30 (local em breve)</p>
+          <p><b>Festa:</b> 18h00 (local em breve)</p>
+          <p style="margin-top:10px">
+            Guarde este link — ele será nosso ponto de encontro até o grande dia ✨
+          </p>
+        </div>
+
       </div>
-    </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="container section" style="padding-top:4px">
+      <h2 class="section-title">Alguns momentos nossos</h2>
+      <p class="p" style="margin-top:-6px">
+        (Você pode trocar essas imagens na pasta <b>assets/img</b>)
+      </p>
+
+      <div class="gallery" style="margin-top:14px">
+        <figure class="photo">
+          <img src="./assets/img/foto-1.svg" alt="Foto 1">
+          <figcaption>Nosso começo</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="./assets/img/foto-2.svg" alt="Foto 2">
+          <figcaption>Momentos inesquecíveis</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="./assets/img/foto-3.svg" alt="Foto 3">
+          <figcaption>Sorrisos e rotina</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="./assets/img/foto-4.svg" alt="Foto 4">
+          <figcaption>O pedido</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="./assets/img/foto-5.svg" alt="Foto 5">
+          <figcaption>Nossa família</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="./assets/img/foto-6.svg" alt="Foto 6">
+          <figcaption>Contando os dias</figcaption>
+        </figure>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
-    <div class="container">© Ingrid & Esdras</div>
+    <div class="container">
+      © Ingrid & Esdras • Feito com carinho
+    </div>
   </footer>
 </body>
 </html>
