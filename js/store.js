@@ -24,11 +24,16 @@ function money(v) {
 
 function escapeHtml(s) {
   return String(s ?? "").replace(/[&<>"']/g, m => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
   }[m]));
 }
 
 function renderCategories(items) {
+  if (!els.cat) return;
   const set = new Set(items.map(x => x.category).filter(Boolean));
   const opts = ['<option value="">Todas categorias</option>']
     .concat([...set].sort().map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`));
@@ -48,13 +53,10 @@ function productCard(p) {
   const purchased = Boolean(p.purchased);
   const checkoutUrl = String(p.checkoutUrl || "").trim();
 
-  const price = money(p.price || 0);
-
   const statusBadge = purchased
     ? `<span class="badge badge-ok">Comprado ✅</span>`
     : `<span class="badge badge-available">Disponível</span>`;
 
-  // Card clicável (se não estiver comprado)
   const clickableAttrs = (!purchased && checkoutUrl)
     ? `role="button" tabindex="0" data-open="${escapeHtml(checkoutUrl)}" aria-label="Abrir pagamento de ${title}"`
     : `aria-disabled="true"`;
@@ -62,10 +64,6 @@ function productCard(p) {
   const img = imgUrl
     ? `<img class="img" src="${imgUrl}" alt="${title}"/>`
     : `<div class="img img-placeholder"></div>`;
-
-  const disabledNote = purchased
-    ? `<div class="p" style="margin-top:10px; color: rgba(40,30,20,.70)">Este item já foi presenteado 💛</div>`
-    : "";
 
   const button = (!purchased && checkoutUrl)
     ? `<button class="btn btn-primary" type="button" data-open="${escapeHtml(checkoutUrl)}">Presentear (Pix ou cartão)</button>`
@@ -82,14 +80,12 @@ function productCard(p) {
             <h3 class="product-title">${title}</h3>
             ${desc ? `<p class="p" style="margin:0">${desc}</p>` : ""}
           </div>
-          <div class="price">${price}</div>
+          <div class="price">${money(p.price || 0)}</div>
         </div>
 
         <div class="actions" style="margin-top:12px">
           ${button}
         </div>
-
-        ${disabledNote}
       </div>
     </article>
   `;
@@ -111,20 +107,16 @@ function applyFilters() {
   if (sort === "price_asc") items.sort((a, b) => (a.price || 0) - (b.price || 0));
   if (sort === "price_desc") items.sort((a, b) => (b.price || 0) - (a.price || 0));
   if (sort === "title") items.sort((a, b) => String(a.title || "").localeCompare(String(b.title || ""), "pt-BR"));
-  // "new" mantém a ordem de createdAt desc (query)
 
+  if (!els.products) return;
   els.products.innerHTML = items.map(productCard).join("") || `<p class="p">Nenhum presente encontrado.</p>`;
 
-  // Clique no card ou no botão "Presentear"
-  const openers = els.products.querySelectorAll("[data-open]");
-  openers.forEach(el => {
+  els.products.querySelectorAll("[data-open]").forEach(el => {
     el.addEventListener("click", (e) => {
-      // Evita abrir duas vezes quando clicar no botão dentro do card
       const btn = e.target.closest("button");
       const url = btn?.getAttribute("data-open") || el.getAttribute("data-open");
       if (url) openCheckout(url);
     });
-
     el.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -136,12 +128,11 @@ function applyFilters() {
 }
 
 async function load() {
+  if (!els.status) return;
   els.status.textContent = "Carregando presentes...";
+
   try {
     const col = collection(db, "gifts");
-
-    // IMPORTANTE: essa query exige índice em alguns projetos
-    // where(active==true) + orderBy(createdAt desc)
     const qy = query(col, where("active", "==", true), orderBy("createdAt", "desc"));
     const snap = await getDocs(qy);
 
@@ -149,9 +140,28 @@ async function load() {
     renderCategories(all);
     applyFilters();
     els.status.textContent = "";
+    return;
+  } catch (err) {
+    console.warn("Query where+orderBy falhou, usando fallback:", err);
+  }
+
+  try {
+    const snap = await getDocs(collection(db, "gifts"));
+    all = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      .filter(x => x.active === true);
+
+    all.sort((a, b) => {
+      const ta = a.createdAt?.seconds ? a.createdAt.seconds : 0;
+      const tb = b.createdAt?.seconds ? b.createdAt.seconds : 0;
+      return tb - ta;
+    });
+
+    renderCategories(all);
+    applyFilters();
+    els.status.textContent = "";
   } catch (err) {
     console.error(err);
-    els.status.textContent = "Erro ao carregar. Verifique Firebase/Firestore e possíveis índices.";
+    els.status.textContent = "Erro ao carregar presentes. Abra o console (F12) para ver detalhes.";
   }
 }
 
