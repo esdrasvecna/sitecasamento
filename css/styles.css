@@ -506,4 +506,6 @@ img{ max-width:100%; display:block; }
 @media (max-width: 720px){
   .admin-grid2{ grid-template-columns: 1fr; }
 }
+.product{ position: relative; }
+
 
