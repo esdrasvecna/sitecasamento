@@ -12,7 +12,7 @@ import {
  */
 
 // MUDE A SENHA AQUI:
-const ADMIN_PASSWORD = "TROQUE-ESSA-SENHA";
+const ADMIN_PASSWORD = "640664";
 
 const els = {
   loginBox: document.getElementById("loginBox"),
