@@ -364,4 +364,39 @@ img{ max-width:100%; display:block; }
   line-height: 1.7;
   color: rgba(40,30,20,.75);
 }
+/* ===== Presentes: status comprado / disponível ===== */
+
+.badge-ok{
+  background: rgba(46, 204, 113, .14);
+  border: 1px solid rgba(46, 204, 113, .28);
+  color: rgba(20, 90, 45, .95);
+}
+
+.badge-available{
+  background: rgba(199,162,107,.14);
+  border: 1px solid rgba(199,162,107,.28);
+  color: rgba(55, 40, 20, .90);
+}
+
+.product-title{
+  margin: 10px 0 6px;
+}
+
+.product.is-bought{
+  opacity: .78;
+}
+
+.product.is-bought .btn{
+  cursor: not-allowed;
+  filter: grayscale(.15);
+}
+
+.product.is-bought::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.03));
+  pointer-events:none;
+}
 
