@@ -1,21 +1,33 @@
 :root{
-  /* BRAND */
-  --brand: #8a4fff;
-  --brand-2: #ff6fb3;
+  /* ====== COMO CONFIGURAR O TEMA ======
+     Troque apenas estes valores e o site inteiro muda.
+  */
 
-  /* BASE */
-  --bg: #0b0c10;
-  --surface: rgba(255,255,255,0.06);
-  --surface-2: rgba(255,255,255,0.10);
-  --text: rgba(255,255,255,0.92);
-  --muted: rgba(255,255,255,0.68);
-  --border: rgba(255,255,255,0.14);
+  /* Marca (dourado suave estilo Casar.com) */
+  --brand: #c7a26b;
+  --brand-2: #e0c18f;
+
+  /* Base */
+  --bg: #fbf7f1;
+  --text: #241f1b;
+  --muted: rgba(36,31,27,.72);
+
+  /* Superfícies */
+  --surface: rgba(255,255,255,.78);
+  --surface-2: rgba(255,255,255,.92);
+
+  /* Bordas e sombras */
+  --border: rgba(36,31,27,.12);
+  --shadow: 0 18px 45px rgba(36,31,27,.10);
 
   /* UI */
   --radius: 18px;
-  --shadow: 0 18px 45px rgba(0,0,0,.35);
-
-  /* TYPO */
-  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   --maxw: 1120px;
+
+  /* Tipografia */
+  --font-body: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  --font-title: "Cormorant Garamond", ui-serif, Georgia, serif;
+
+  /* Imagem de capa (pode trocar por uma foto sua) */
+  --cover-url: url("../assets/cover.jpg");
 }

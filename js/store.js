@@ -33,7 +33,7 @@ function renderCategories(items){
 
 function productCard(p){
   const img = p.imageUrl
-    ? `<img class="img" src="${escapeHtml(p.imageUrl)}" alt="${escapeHtml(p.title)}"/>`
+    ? `<div class="img"><img src="${escapeHtml(p.imageUrl)}" alt="${escapeHtml(p.title || "Presente")}" loading="lazy"/></div>`
     : `<div class="img"></div>`;
 
   const link = p.link && String(p.link).trim() ? String(p.link).trim() : "#";
@@ -43,20 +43,19 @@ function productCard(p){
     <article class="card product">
       ${img}
       <div class="body">
-        <div class="meta">
-          <div>
-            <div class="badge">${escapeHtml(p.category || "Presente")}</div>
-            <h3 style="margin:10px 0 6px">${escapeHtml(p.title || "Sem título")}</h3>
-            <p class="p" style="margin:0">${escapeHtml(p.description || "")}</p>
-          </div>
+        <div class="category">${escapeHtml(p.category || "Presente")}</div>
+        <h3>${escapeHtml(p.title || "Sem título")}</h3>
+        <p class="desc">${escapeHtml(p.description || "")}</p>
+
+        <div class="row">
           <div class="price">${money(p.price || 0)}</div>
         </div>
 
         <div class="actions">
-          <a class="btn btn-primary" href="${escapeHtml(link)}" target="_blank" rel="noreferrer" ${link==="#"?"aria-disabled=\"true\"":""}>
+          <a class="btn btn-primary" href="${escapeHtml(link)}" target="_blank" rel="noreferrer" ${link==="#"?"aria-disabled=\"true\" tabindex=\"-1\"":""}>
             Presentear
           </a>
-          <button class="btn btn-ghost" data-copy="${escapeHtml(pix)}" type="button">
+          <button class="btn btn-ghost" data-copy="${escapeHtml(pix)}" type="button" ${pix?"":"disabled"}>
             Copiar Pix
           </button>
         </div>
